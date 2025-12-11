@@ -1,5 +1,9 @@
 import os
 
+task_list = []
+
+
+
 def title():
     print("""
 ███████████████████████████████████████████████████████████▀█████████████
@@ -8,10 +12,34 @@ def title():
 ▀▀▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▀▀▄▄▄▀▄▄▄▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀
           """)
 
+
+def add_task():
+    print("""
+█▀▀ ▄▀█ █▀▄ ▄▀█ █▀ ▀█▀ █▀█ █▀█   █▄░█ █▀█ █░█ ▄▀█   ▀█▀ ▄▀█ █▀█ █▀▀ █▀▀ ▄▀█
+█▄▄ █▀█ █▄▀ █▀█ ▄█ ░█░ █▀▄ █▄█   █░▀█ █▄█ ▀▄▀ █▀█   ░█░ █▀█ █▀▄ ██▄ █▀░ █▀█
+
+""")
+    
+    task_name = input('Digite a tarefa: ')
+    description_task = input(f'Escreva brevemente sobre a tarefa {task_name}: ') 
+    data_task = {'Nome':task_name, 'Descrição':description_task, 'Ativo':False}
+    task_list.append(data_task)
+    print(f'A tarefa {task_name} foi criada com sucesso!!!')
+    back_menu()
+    
+
+def show_task_list():
+    print(task_list)
+
+def back_menu():
+
+    print('\n Aperte qualquer tecla para voltar ao menu: ')
+    main()
+
 def invalid_option():
     
     print('Opção invalida\n')
-    
+    back_menu()
     
 
 def chose_option():
@@ -31,21 +59,17 @@ def chose_option():
         invalid_option()
         
 def show_options():
-    print('Adicionar tarefa')
-    print('Visualizar tarefa')
-    print('Remover tarefa')
-    print('Sair')
+    print('1.Adicionar tarefa')
+    print('2.Visualizar tarefa')
+    print('3.Remover tarefa')
+    print('4.Sair')
 
 
 def main():
       title()
       show_options()
       chose_option()
-      
-        
-     
-     
-     
+         
 
 if __name__ == '__main__':
     main()
