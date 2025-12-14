@@ -1,7 +1,11 @@
 import os
 
-task_list = []
+task_list = [
+            {'Nome':'Aprender Java', 'Descrição': 'Estudar 2h por dia', 'Status':'Em progresso '},
+             
+             {'Nome':'Aprender a nadar', 'Descrição': 'Treinar 1h por dia', 'Status':'Concluido'},
 
+]
 
 
 def title():
@@ -12,6 +16,9 @@ def title():
 ▀▀▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▀▀▄▄▄▀▄▄▄▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀
           """)
 
+def leave():
+    print('Saindo...')
+    exit
 
 def add_task():
     print("""
@@ -22,18 +29,30 @@ def add_task():
     
     task_name = input('Digite a tarefa: ')
     description_task = input(f'Escreva brevemente sobre a tarefa {task_name}: ') 
-    data_task = {'Nome':task_name, 'Descrição':description_task, 'Ativo':False}
+    status = input(f'Escreva o status da atividade {task_name} (Em progesso ou concluida): ')
+    data_task = {'Nome':task_name, 'Descrição':description_task, 'Status':status}
     task_list.append(data_task)
     print(f'A tarefa {task_name} foi criada com sucesso!!!')
     back_menu()
     
+def remove_task():
+    print('')
+    
 
 def show_task_list():
-    print(task_list)
+    print(f'{'Nome da tarefa:'.ljust(22)} | {'Descrição'.ljust(20)} | {'Status'}')
+    print('______________________|||____________________|||___________')
+    for task in task_list:
+        task_name = 'Nome:'
+        description_task = task['Descrição']
+        status = 'Status'
+        print(f'- {task_name.ljust(20)} | {description_task.ljust(20)} | {status}')
+    back_menu()
+    
 
 def back_menu():
 
-    print('\n Aperte qualquer tecla para voltar ao menu: ')
+    input('\n Aperte qualquer tecla para voltar ao menu: ')
     main()
 
 def invalid_option():
@@ -41,6 +60,14 @@ def invalid_option():
     print('Opção invalida\n')
     back_menu()
     
+
+   
+def show_options():
+    print('1.Adicionar tarefa')
+    print('2.Visualizar tarefa')
+    print('3.Remover tarefa')
+    print('4.Sair')
+
 
 def chose_option():
     try:
@@ -55,17 +82,13 @@ def chose_option():
                 remove_task()
             case 4:
                 leave()
+            case _:
+                invalid_option()
     except:
         invalid_option()
-        
-def show_options():
-    print('1.Adicionar tarefa')
-    print('2.Visualizar tarefa')
-    print('3.Remover tarefa')
-    print('4.Sair')
-
 
 def main():
+      os.system('cls')
       title()
       show_options()
       chose_option()
