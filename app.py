@@ -16,16 +16,26 @@ def title():
 ▀▀▄▄▄▀▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▀▀▄▄▄▀▄▄▄▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀
           """)
 
+
+def show_subtitle(texto):
+    os.system('cls')
+    
+    line = '*' * (len(texto))
+    print(line)
+    print(texto)
+    print(line)
+
 def leave():
     print('Saindo...')
     exit
 
 def add_task():
-    print("""
+    
+    show_subtitle(("""
 █▀▀ ▄▀█ █▀▄ ▄▀█ █▀ ▀█▀ █▀█ █▀█   █▄░█ █▀█ █░█ ▄▀█   ▀█▀ ▄▀█ █▀█ █▀▀ █▀▀ ▄▀█
 █▄▄ █▀█ █▄▀ █▀█ ▄█ ░█░ █▀▄ █▄█   █░▀█ █▄█ ▀▄▀ █▀█   ░█░ █▀█ █▀▄ ██▄ █▀░ █▀█
 
-""")
+"""))
     
     task_name = input('Digite a tarefa: ')
     description_task = input(f'Escreva brevemente sobre a tarefa {task_name}: ') 
@@ -40,12 +50,18 @@ def remove_task():
     
 
 def show_task_list():
-    print(f'{'Nome da tarefa:'.ljust(22)} | {'Descrição'.ljust(20)} | {'Status'}')
+    
+    show_subtitle( """
+█░░ █ █▀ ▀█▀ ▄▀█   █▀▄ █▀▀   ▀█▀ ▄▀█ █▀█ █▀▀ █▀▀ ▄▀█ █▀
+█▄▄ █ ▄█ ░█░ █▀█   █▄▀ ██▄   ░█░ █▀█ █▀▄ ██▄ █▀░ █▀█ ▄█
+
+                  """)
+    print(f'{'Nome da tarefa'.ljust(22)} | {'Descrição'.ljust(20)} | {'Status'}')
     print('______________________|||____________________|||___________')
     for task in task_list:
-        task_name = 'Nome:'
+        task_name = task['Nome']
         description_task = task['Descrição']
-        status = 'Status'
+        status = task['Status']
         print(f'- {task_name.ljust(20)} | {description_task.ljust(20)} | {status}')
     back_menu()
     
